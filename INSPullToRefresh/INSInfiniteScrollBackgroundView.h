@@ -1,8 +1,8 @@
 //
-//  INSPullToRefreshBackgroundView.h
+//  INSInfinityScrollBackgroundView.h
 //  INSPullToRefresh
 //
-//  Created by Michał Zaborowski on 18.02.2015.
+//  Created by Michał Zaborowski on 19.02.2015.
 //  Copyright (c) 2015 inspace.io. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,41 +25,33 @@
 
 #import <UIKit/UIKit.h>
 
-extern CGFloat const INSPullToRefreshDefaultResetContentInsetAnimationTime;
-extern CGFloat const INSPullToRefreshDefaultDragToTriggerOffset;
+typedef void(^INSInfinityScrollActionHandler)(UIScrollView *scrollView);
 
-typedef void(^INSPullToRefreshActionHandler)(UIScrollView *scrollView);
-
-typedef NS_ENUM(NSUInteger, INSPullToRefreshBackgroundViewState) {
-    INSPullToRefreshBackgroundViewStateNone = 0,
-    INSPullToRefreshBackgroundViewStateTriggered,
-    INSPullToRefreshBackgroundViewStateLoading,
+typedef NS_ENUM(NSUInteger, INSInfiniteScrollBackgroundViewState) {
+    INSInfiniteScrollBackgroundViewStateNone = 0,
+    INSInfiniteScrollBackgroundViewStateLoading,
 };
 
-@class INSPullToRefreshBackgroundView;
+@class INSInfiniteScrollBackgroundView;
 
-@protocol INSPullToRefreshBackgroundViewDelegate <NSObject>
+@protocol INSInfiniteScrollBackgroundViewDelegate <NSObject>
 @optional
-- (void)pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView didChangeState:(INSPullToRefreshBackgroundViewState)state;
-
-- (void)pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView didChangeTriggerStateProgress:(CGFloat)progress;
-
+- (void)infinityScrollBackgroundView:(INSInfiniteScrollBackgroundView *)infinityScrollBackgroundView didChangeState:(INSInfiniteScrollBackgroundViewState)state;
 @end
 
-@interface INSPullToRefreshBackgroundView : UIView
-
-@property (nonatomic, copy) INSPullToRefreshActionHandler actionHandler;
+@interface INSInfiniteScrollBackgroundView : UIView
+@property (nonatomic, copy) INSInfinityScrollActionHandler actionHandler;
 @property (nonatomic, weak) UIScrollView *scrollView;
 
-@property (nonatomic, weak) id <INSPullToRefreshBackgroundViewDelegate> delegate;
+@property (nonatomic, weak) id <INSInfiniteScrollBackgroundViewDelegate> delegate;
 
-@property (nonatomic, readonly) INSPullToRefreshBackgroundViewState state;
+@property (nonatomic, readonly) INSInfiniteScrollBackgroundViewState state;
 @property (nonatomic, assign) BOOL preserveContentInset;
 
-@property (nonatomic, assign) CGFloat dragToTriggerOffset;
+@property (nonatomic, assign) CGFloat additionalBottomOffsetForInfinityScrollTrigger;
 
 - (instancetype)initWithHeight:(CGFloat)height scrollView:(UIScrollView *)scrollView;
 
-- (void)beginRefreshing;
-- (void)endRefreshing;
+- (void)beginInfiniteScrolling;
+- (void)endInfiniteScrolling;
 @end
