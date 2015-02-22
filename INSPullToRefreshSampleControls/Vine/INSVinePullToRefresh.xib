@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6221" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="INSVinePullToRefresh">
+            <connections>
+                <outlet property="bottomArrow" destination="ixl-fH-Gfa" id="uZ1-dV-v30"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="Gq8-pU-C0b"/>
+                <outlet property="middleArrow" destination="d3Q-ap-NcP" id="RRy-mE-OKY"/>
+                <outlet property="topArrow" destination="wkQ-sA-AAb" id="LeB-pm-7pk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconVine" translatesAutoresizingMaskIntoConstraints="NO" id="wkQ-sA-AAb">
+                    <rect key="frame" x="11" y="-1" width="10" height="10"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="5iR-Os-lS1"/>
+                        <constraint firstAttribute="width" constant="10" id="y05-WQ-FK2"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconVine" translatesAutoresizingMaskIntoConstraints="NO" id="d3Q-ap-NcP">
+                    <rect key="frame" x="11" y="11" width="10" height="10"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="5de-B6-Fft"/>
+                        <constraint firstAttribute="width" constant="10" id="Bpa-bQ-xo8"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconVine" translatesAutoresizingMaskIntoConstraints="NO" id="ixl-fH-Gfa">
+                    <rect key="frame" x="11" y="23" width="10" height="10"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="10" id="Kdf-JG-IHV"/>
+                        <constraint firstAttribute="height" constant="10" id="xn9-hZ-mIK"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="ixl-fH-Gfa" secondAttribute="centerX" id="3Qa-UV-81s"/>
+                <constraint firstAttribute="centerX" secondItem="wkQ-sA-AAb" secondAttribute="centerX" id="JzE-iX-w8Q"/>
+                <constraint firstItem="d3Q-ap-NcP" firstAttribute="top" secondItem="wkQ-sA-AAb" secondAttribute="bottom" constant="2" id="RdO-Z2-e2D"/>
+                <constraint firstAttribute="centerX" secondItem="d3Q-ap-NcP" secondAttribute="centerX" id="Vbs-ue-lk7"/>
+                <constraint firstItem="ixl-fH-Gfa" firstAttribute="top" secondItem="d3Q-ap-NcP" secondAttribute="bottom" constant="2" id="XeS-qX-kxJ"/>
+                <constraint firstAttribute="centerY" secondItem="d3Q-ap-NcP" secondAttribute="centerY" id="qm7-k4-H57"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="340" y="-41"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="iconVine" width="50" height="50"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
