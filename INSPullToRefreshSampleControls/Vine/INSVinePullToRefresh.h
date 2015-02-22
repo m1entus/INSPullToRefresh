@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "INSRefreshable.h"
+#import "UIScrollView+INSPullToRefresh.h"
 
-@interface INSVinePullToRefresh : UIView <INSRefreshable>
+@interface INSVinePullToRefresh : UIView <INSPullToRefreshBackgroundViewDelegate>
 @property (nonatomic, weak) IBOutlet UIView *contentView;
 @end

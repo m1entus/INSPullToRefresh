@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "INSRefreshable.h"
+#import "UIScrollView+INSPullToRefresh.h"
 
-@interface INSDefaultPullToRefresh : UIView <INSRefreshable>
+@interface INSDefaultPullToRefresh : UIView <INSPullToRefreshBackgroundViewDelegate>
 
 - (instancetype)initWithFrame:(CGRect)frame backImage:(UIImage *)backCircleImage frontImage:(UIImage *)frontCircleImage;
 

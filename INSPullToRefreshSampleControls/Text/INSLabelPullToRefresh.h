@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "INSRefreshable.h"
+#import "UIScrollView+INSPullToRefresh.h"
 
-@interface INSLabelPullToRefresh : UIView <INSRefreshable>
+@interface INSLabelPullToRefresh : UIView <INSPullToRefreshBackgroundViewDelegate>
 
 - (instancetype)initWithFrame:(CGRect)frame noneStateText:(NSString *)noneState triggeredStateText:(NSString *)triggered loadingStateText:(NSString *)loadingState;
 @end

@@ -68,7 +68,6 @@
 		06FA69A61A9A0C2100DF42E6 /* INSDefaultPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSDefaultPullToRefresh.h; sourceTree = "<group>"; };
 		06FA69A71A9A0C2100DF42E6 /* INSDefaultPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSDefaultPullToRefresh.m; sourceTree = "<group>"; };
 		06FA69A81A9A0C2100DF42E6 /* INSAnimatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSAnimatable.h; sourceTree = "<group>"; };
-		06FA69A91A9A0C2100DF42E6 /* INSRefreshable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSRefreshable.h; sourceTree = "<group>"; };
 		06FA69AB1A9A0C2100DF42E6 /* INSLappsyInfiniteIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSLappsyInfiniteIndicator.h; sourceTree = "<group>"; };
 		06FA69AC1A9A0C2100DF42E6 /* INSLappsyInfiniteIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSLappsyInfiniteIndicator.m; sourceTree = "<group>"; };
 		06FA69AD1A9A0C2100DF42E6 /* INSLappsyPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSLappsyPullToRefresh.h; sourceTree = "<group>"; };
@@ -179,7 +178,6 @@
 				06FA699E1A9A0C2100DF42E6 /* Circle */,
 				06FA69A31A9A0C2100DF42E6 /* Default */,
 				06FA69A81A9A0C2100DF42E6 /* INSAnimatable.h */,
-				06FA69A91A9A0C2100DF42E6 /* INSRefreshable.h */,
 				06FA69AA1A9A0C2100DF42E6 /* Lappsy */,
 				06FA69AF1A9A0C2100DF42E6 /* Pinterest */,
 				06FA69B21A9A0C2100DF42E6 /* Text */,

@@ -36,6 +36,14 @@
     return self;
 }
 
+- (void)pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView didChangeState:(INSPullToRefreshBackgroundViewState)state {
+    [self handleStateChange:state];
+}
+
+- (void)pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView didChangeTriggerStateProgress:(CGFloat)progress {
+    [self handleProgress:progress forState:pullToRefreshBackgroundView.state];
+}
+
 - (void)handleProgress:(CGFloat)progress forState:(INSPullToRefreshBackgroundViewState)state {
 
 }

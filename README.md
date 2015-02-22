@@ -31,32 +31,33 @@ We wrote couple samples that can be found in popular apps like Facebook, Vine, T
     });
 }];
 
-self.tableView.ins_pullToRefreshBackgroundView.delegate = self;
-
 CGRect defaultFrame = CGRectMake(0, 0, 24, 24);
 
-self.pullToRefresh = [[INSDefaultPullToRefresh alloc] initWithFrame:defaultFrame backImage:[UIImage imageNamed:@"circleLight"] frontImage:[UIImage imageNamed:@"circleDark"]];
+UIView <INSPullToRefreshBackgroundViewDelegate> *pullToRefresh = [[INSDefaultPullToRefresh alloc] initWithFrame:defaultFrame backImage:[UIImage imageNamed:@"circleLight"] frontImage:[UIImage imageNamed:@"circleDark"]];
 
-[self.tableView.ins_pullToRefreshBackgroundView addSubview:self.pullToRefresh];
+self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh;
+[self.tableView.ins_pullToRefreshBackgroundView addSubview:pullToRefresh];
 ```
 
 ```objective-c
-#pragma mark - <INSPullToRefreshBackgroundViewDelegate>
-
-- (void)pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView didChangeState:(INSPullToRefreshBackgroundViewState)state {
-    [self.pullToRefresh handleStateChange:state];
-}
-
-- (void)pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView didChangeTriggerStateProgress:(CGFloat)progress {
-    [self.pullToRefresh handleProgress:progress forState:pullToRefreshBackgroundView.state];
-}
-
 #pragma mark - dealloc
 
 - (void)dealloc {
     [self.tableView ins_removeInfinityScroll];
     [self.tableView ins_removePullToRefresh];
 }
+```
+
+All you need to do is handle two INSPullToRefreshBackgroundViewDelegate methods in your custom view.
+
+```objective-c
+@protocol INSPullToRefreshBackgroundViewDelegate <NSObject>
+@optional
+- (void)pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView didChangeState:(INSPullToRefreshBackgroundViewState)state;
+
+- (void)pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView didChangeTriggerStateProgress:(CGFloat)progress;
+
+@end
 ```
 
 ## CocoaPods

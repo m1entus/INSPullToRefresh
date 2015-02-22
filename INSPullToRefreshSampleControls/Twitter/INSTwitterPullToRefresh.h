@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "INSRefreshable.h"
+#import "UIScrollView+INSPullToRefresh.h"
 
-@interface INSTwitterPullToRefresh : UIView <INSRefreshable>
+@interface INSTwitterPullToRefresh : UIView <INSPullToRefreshBackgroundViewDelegate>
 
 @end

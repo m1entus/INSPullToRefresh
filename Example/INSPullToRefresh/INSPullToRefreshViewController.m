@@ -19,10 +19,9 @@
 #import "INSLappsyPullToRefresh.h"
 #include "INSLappsyInfiniteIndicator.h"
 
-@interface INSPullToRefreshViewController () <UITableViewDataSource, UITableViewDelegate, INSPullToRefreshBackgroundViewDelegate, INSInfiniteScrollBackgroundViewDelegate>
+@interface INSPullToRefreshViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) NSUInteger numberOfRows;
-@property (nonatomic, strong) UIView <INSRefreshable> *pullToRefresh;
 @end
 
 @implementation INSPullToRefreshViewController
@@ -53,8 +52,6 @@
     if (self.style == INSPullToRefreshStylePreserveContentInset) {
         self.tableView.ins_pullToRefreshBackgroundView.preserveContentInset = YES;
     }
-
-    self.tableView.ins_pullToRefreshBackgroundView.delegate = self;
 
     if (self.style == INSPullToRefreshStyleText) {
         self.tableView.ins_pullToRefreshBackgroundView.dragToTriggerOffset = 60.0;
@@ -95,13 +92,13 @@
         self.tableView.ins_infiniteScrollBackgroundView.preserveContentInset = YES;
     }
 
-
-    self.pullToRefresh = [self pullToRefreshViewFromCurrentStyle];
-    [self.tableView.ins_pullToRefreshBackgroundView addSubview:self.pullToRefresh];
+    UIView <INSPullToRefreshBackgroundViewDelegate> *pullToRefresh = [self pullToRefreshViewFromCurrentStyle];
+    self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh;
+    [self.tableView.ins_pullToRefreshBackgroundView addSubview:pullToRefresh];
 
 }
 
-- (UIView <INSRefreshable> *)pullToRefreshViewFromCurrentStyle {
+- (UIView <INSPullToRefreshBackgroundViewDelegate> *)pullToRefreshViewFromCurrentStyle {
 
     CGRect defaultFrame = CGRectMake(0, 0, 24, 24);
 
@@ -176,17 +173,6 @@
         }
     }
 }
-
-#pragma mark - <INSPullToRefreshBackgroundViewDelegate>
-
-- (void)pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView didChangeState:(INSPullToRefreshBackgroundViewState)state {
-    [self.pullToRefresh handleStateChange:state];
-}
-
-- (void)pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView didChangeTriggerStateProgress:(CGFloat)progress {
-    [self.pullToRefresh handleProgress:progress forState:pullToRefreshBackgroundView.state];
-}
-
 #pragma mark - dealloc
 
 - (void)dealloc {
