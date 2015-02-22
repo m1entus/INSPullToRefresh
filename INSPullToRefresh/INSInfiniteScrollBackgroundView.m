@@ -262,7 +262,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
 
     if (_preserveContentInset) {
         self.frame = CGRectMake(0.0f,
-                                contentHeight +_externalContentInset.bottom,
+                                contentHeight + _externalContentInset.bottom,
                                 CGRectGetWidth(_scrollView.bounds),
                                 height);
     }

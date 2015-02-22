@@ -14,6 +14,8 @@
 		0602946F1A9525F000AD8673 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0602946E1A9525F000AD8673 /* Images.xcassets */; };
 		060294721A9525F000AD8673 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 060294701A9525F000AD8673 /* LaunchScreen.xib */; };
 		0602947E1A9525F000AD8673 /* INSPullToRefreshTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0602947D1A9525F000AD8673 /* INSPullToRefreshTests.m */; };
+		0661A3771A9A63FA002DDE83 /* INSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0661A3761A9A63FA002DDE83 /* INSBaseViewController.m */; };
+		0661A37A1A9A64BA002DDE83 /* INSPullToRefreshCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0661A3791A9A64BA002DDE83 /* INSPullToRefreshCollectionViewController.m */; };
 		06A73A3E1A97D4E3006BAAE5 /* INSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A73A3D1A97D4E3006BAAE5 /* INSTableViewController.m */; };
 		06FA69961A99E22700DF42E6 /* HUD.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06FA69951A99E22700DF42E6 /* HUD.xcassets */; };
 		06FA69BC1A9A0C2100DF42E6 /* INSCircleInfiniteIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA69A01A9A0C2100DF42E6 /* INSCircleInfiniteIndicator.m */; };
@@ -56,6 +58,10 @@
 		060294771A9525F000AD8673 /* INSPullToRefreshTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = INSPullToRefreshTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0602947C1A9525F000AD8673 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0602947D1A9525F000AD8673 /* INSPullToRefreshTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INSPullToRefreshTests.m; sourceTree = "<group>"; };
+		0661A3751A9A63FA002DDE83 /* INSBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSBaseViewController.h; sourceTree = "<group>"; };
+		0661A3761A9A63FA002DDE83 /* INSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSBaseViewController.m; sourceTree = "<group>"; };
+		0661A3781A9A64BA002DDE83 /* INSPullToRefreshCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSPullToRefreshCollectionViewController.h; sourceTree = "<group>"; };
+		0661A3791A9A64BA002DDE83 /* INSPullToRefreshCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSPullToRefreshCollectionViewController.m; sourceTree = "<group>"; };
 		06A73A3C1A97D4E3006BAAE5 /* INSTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSTableViewController.h; sourceTree = "<group>"; };
 		06A73A3D1A97D4E3006BAAE5 /* INSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSTableViewController.m; sourceTree = "<group>"; };
 		06FA69951A99E22700DF42E6 /* HUD.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HUD.xcassets; sourceTree = "<group>"; };
@@ -130,12 +136,16 @@
 		060294601A9525F000AD8673 /* INSPullToRefreshExample */ = {
 			isa = PBXGroup;
 			children = (
+				0661A3751A9A63FA002DDE83 /* INSBaseViewController.h */,
+				0661A3761A9A63FA002DDE83 /* INSBaseViewController.m */,
 				060294651A9525F000AD8673 /* AppDelegate.h */,
 				060294661A9525F000AD8673 /* AppDelegate.m */,
 				06A73A3C1A97D4E3006BAAE5 /* INSTableViewController.h */,
 				06A73A3D1A97D4E3006BAAE5 /* INSTableViewController.m */,
 				060294681A9525F000AD8673 /* INSPullToRefreshViewController.h */,
 				060294691A9525F000AD8673 /* INSPullToRefreshViewController.m */,
+				0661A3781A9A64BA002DDE83 /* INSPullToRefreshCollectionViewController.h */,
+				0661A3791A9A64BA002DDE83 /* INSPullToRefreshCollectionViewController.m */,
 				0602946B1A9525F000AD8673 /* Main.storyboard */,
 				06FA69951A99E22700DF42E6 /* HUD.xcassets */,
 				0602946E1A9525F000AD8673 /* Images.xcassets */,
@@ -374,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0661A3771A9A63FA002DDE83 /* INSBaseViewController.m in Sources */,
 				06FA69BD1A9A0C2100DF42E6 /* INSCirclePullToRefresh.m in Sources */,
 				06FA69C11A9A0C2100DF42E6 /* INSLappsyPullToRefresh.m in Sources */,
 				0602946A1A9525F000AD8673 /* INSPullToRefreshViewController.m in Sources */,
@@ -390,6 +401,7 @@
 				06FA69BE1A9A0C2100DF42E6 /* INSDefaultInfiniteIndicator.m in Sources */,
 				06FA69BC1A9A0C2100DF42E6 /* INSCircleInfiniteIndicator.m in Sources */,
 				06FA69CF1A9A0C2D00DF42E6 /* INSPullToRefreshBackgroundView.m in Sources */,
+				0661A37A1A9A64BA002DDE83 /* INSPullToRefreshCollectionViewController.m in Sources */,
 				060294641A9525F000AD8673 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

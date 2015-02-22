@@ -7,20 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "INSBaseViewController.h"
 
-typedef NS_ENUM(NSUInteger, INSPullToRefreshStyle){
-    INSPullToRefreshStyleDefault = 0,
-    INSPullToRefreshStyleCircle,
-    INSPullToRefreshStyleTwitter,
-    INSPullToRefreshStyleFacebook,
-    INSPullToRefreshStyleLappsy,
-    INSPullToRefreshStyleVine,
-    INSPullToRefreshStylePinterest,
-    INSPullToRefreshStyleText,
-    INSPullToRefreshStylePreserveContentInset
-};
-
-@interface INSPullToRefreshViewController : UIViewController
-@property (nonatomic, assign) INSPullToRefreshStyle style;
+@interface INSPullToRefreshViewController : INSBaseViewController
 @end
 
