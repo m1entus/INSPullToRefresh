@@ -2,7 +2,7 @@
 
 # Introduction
 
-**INSElectronicProgramGuideLayout** was written by **[Michał Zaborowski](https://github.com/m1entus)** for **[inspace.io](http://inspace.io)**
+**INSPullToRefresh** was written by **[Michał Zaborowski](https://github.com/m1entus)** for **[inspace.io](http://inspace.io)**
 
 # INSPullToRefresh
 

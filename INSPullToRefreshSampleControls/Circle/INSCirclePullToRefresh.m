@@ -56,7 +56,6 @@ static NSString* const INSPullToRefreshSpinAnimationKey = @"SpinAnimation";
     if (state == INSPullToRefreshBackgroundViewStateNone || state == INSPullToRefreshBackgroundViewStateTriggered) {
         self.circle.transform = CATransform3DMakeScale(progress, progress, progress);
     }
-    NSLog(@"progress: %f, state: %u",progress,state);
 }
 - (void)handleStateChange:(INSPullToRefreshBackgroundViewState)state {
     if (state == INSPullToRefreshBackgroundViewStateNone) {
@@ -64,7 +63,6 @@ static NSString* const INSPullToRefreshSpinAnimationKey = @"SpinAnimation";
     } else if (state == INSPullToRefreshBackgroundViewStateLoading){
         [self startAnimating];
     }
-    NSLog(@"state: %u",state);
 }
 
 - (void)startAnimating {
