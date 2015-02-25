@@ -71,30 +71,40 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 #pragma mark - Setters
 
 - (void)setState:(INSPullToRefreshBackgroundViewState)newState {
-
+    
     if (_state == newState)
         return;
-
+    
     INSPullToRefreshBackgroundViewState previousState = _state;
     _state = newState;
-
+    
     [self setNeedsLayout];
     [self layoutIfNeeded];
-
+    
     switch (newState) {
         case INSPullToRefreshBackgroundViewStateTriggered:
         case INSPullToRefreshBackgroundViewStateNone: {
             [self resetScrollViewContentInsetWithCompletion:nil];
             break;
         }
-
+            
         case INSPullToRefreshBackgroundViewStateLoading: {
             [self setScrollViewContentInsetForLoadingAnimated:YES];
-
+            
             if (previousState == INSPullToRefreshBackgroundViewStateTriggered && self.actionHandler) {
                 self.actionHandler(self.scrollView);
             }
             break;
+        }
+    }
+}
+
+- (void)setPreserveContentInset:(BOOL)preserveContentInset {
+    if (_preserveContentInset != preserveContentInset) {
+        _preserveContentInset = preserveContentInset;
+        
+        if (self.bounds.size.height > 0.0f) {
+            [self resetFrame];
         }
     }
 }
@@ -108,7 +118,7 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 - (instancetype)initWithHeight:(CGFloat)height scrollView:(UIScrollView *)scrollView {
     NSParameterAssert(height > 0.0f);
     NSParameterAssert(scrollView);
-
+    
     CGRect frame = CGRectMake(0.0f, 0.0f, 0.0f, height);
     if (self = [super initWithFrame:frame]) {
         _dragToTriggerOffset = INSPullToRefreshDefaultDragToTriggerOffset;
@@ -117,10 +127,11 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _state = INSPullToRefreshBackgroundViewStateNone;
         _preserveContentInset = NO;
-
+        _scrollToTopAfterEndRefreshing = YES;
+        
         [self resetFrame];
     }
-
+    
     return self;
 }
 
@@ -138,8 +149,10 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 - (void)endRefreshing {
     if (self.state != INSPullToRefreshBackgroundViewStateNone) {
         [self changeState:INSPullToRefreshBackgroundViewStateNone];
-        CGPoint originalContentOffset = CGPointMake(-_externalContentInset.left, -_externalContentInset.top);
-        [self.scrollView setContentOffset:originalContentOffset animated:NO];
+        if (self.scrollToTopAfterEndRefreshing) {
+            CGPoint originalContentOffset = CGPointMake(-_externalContentInset.left, -_externalContentInset.top);
+            [self.scrollView setContentOffset:originalContentOffset animated:NO];
+        }
     }
 }
 
@@ -175,9 +188,30 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
     }
 }
 
+- (BOOL)isScrollViewIsTableViewAndHaveSections {
+    if ([self.scrollView isKindOfClass:[UITableView class]]) {
+        UITableView *tableView = (UITableView *)self.scrollView;
+        return tableView.numberOfSections > 1;
+    }
+    return NO;
+}
+
 - (void)scrollViewDidScroll:(CGPoint)contentOffset {
     if (self.state == INSPullToRefreshBackgroundViewStateLoading) {
-        [self setScrollViewContentInsetForLoadingAnimated:NO];
+        
+        UIEdgeInsets loadingInset = self.externalContentInset;
+        CGFloat top = loadingInset.top + CGRectGetHeight(self.bounds);
+        
+        if ([self isScrollViewIsTableViewAndHaveSections] && self.scrollView.contentOffset.y > -CGRectGetHeight(self.bounds)) {
+            if (self.scrollView.contentOffset.y >= 0) {
+                top = loadingInset.top;
+            } else {
+                top = fabs(self.scrollView.contentOffset.y);
+            }
+        }
+        
+        loadingInset.top = top;
+        [self setScrollViewContentInset:loadingInset forLoadingAnimated:NO];
     } else {
         CGFloat dragging = -contentOffset.y - _externalContentInset.top;
         if (!self.scrollView.isDragging && self.state == INSPullToRefreshBackgroundViewStateTriggered) {
@@ -189,15 +223,15 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
         else if (dragging < self.dragToTriggerOffset && self.state != INSPullToRefreshBackgroundViewStateNone) {
             [self changeState:INSPullToRefreshBackgroundViewStateNone];
         }
-
+        
         if (dragging >= 0 && self.state != INSPullToRefreshBackgroundViewStateLoading) {
             if ([self.delegate respondsToSelector:@selector(pullToRefreshBackgroundView:didChangeTriggerStateProgress:)]) {
-
+                
                 CGFloat progress = (dragging * 1 / self.dragToTriggerOffset);
                 if (progress > 1) {
                     progress = 1;
                 }
-
+                
                 [self.delegate pullToRefreshBackgroundView:self didChangeTriggerStateProgress:progress];
             }
         }
@@ -216,11 +250,10 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
                      completion:completion];
 }
 
-- (void)setScrollViewContentInsetForLoadingAnimated:(BOOL)animated {
-    UIEdgeInsets loadingInset = self.externalContentInset;
-    loadingInset.top += CGRectGetHeight(self.bounds);
+- (void)setScrollViewContentInset:(UIEdgeInsets)insetes forLoadingAnimated:(BOOL)animated {
+    
     void (^updateBlock)(void) = ^{
-        [self setScrollViewContentInset:loadingInset];
+        [self setScrollViewContentInset:insetes];
     };
     if (animated) {
         [UIView animateWithDuration:INSPullToRefreshDefaultResetContentInsetAnimationTime
@@ -231,6 +264,13 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
     } else {
         updateBlock();
     }
+}
+
+- (void)setScrollViewContentInsetForLoadingAnimated:(BOOL)animated {
+    UIEdgeInsets loadingInset = self.externalContentInset;
+    loadingInset.top += CGRectGetHeight(self.bounds);
+    
+    [self setScrollViewContentInset:loadingInset forLoadingAnimated:animated];
 }
 
 - (void)setScrollViewContentInset:(UIEdgeInsets)contentInset {
@@ -248,7 +288,7 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 
 - (void)resetFrame {
     CGFloat height = CGRectGetHeight(self.bounds);
-
+    
     if (_preserveContentInset) {
         self.frame = CGRectMake(0.0f,
                                 -height -_externalContentInset.top,

@@ -55,6 +55,7 @@ typedef NS_ENUM(NSUInteger, INSPullToRefreshBackgroundViewState) {
 
 @property (nonatomic, readonly) INSPullToRefreshBackgroundViewState state;
 @property (nonatomic, assign) BOOL preserveContentInset;
+@property (nonatomic, assign) BOOL scrollToTopAfterEndRefreshing;
 
 @property (nonatomic, assign) CGFloat dragToTriggerOffset;
 

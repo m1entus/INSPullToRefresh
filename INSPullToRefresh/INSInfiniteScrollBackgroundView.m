@@ -37,6 +37,17 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
 
 @implementation INSInfiniteScrollBackgroundView
 
+- (void)setPreserveContentInset:(BOOL)preserveContentInset {
+    if (_preserveContentInset != preserveContentInset) {
+        _preserveContentInset = preserveContentInset;
+        
+        if (self.bounds.size.height > 0.0f) {
+            [self resetFrame];
+        }
+    }
+}
+
+
 #pragma mark - Initializers
 
 - (instancetype)initWithFrame:(CGRect)frame {
