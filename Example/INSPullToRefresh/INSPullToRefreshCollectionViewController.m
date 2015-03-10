@@ -48,26 +48,28 @@
         self.collectionView.ins_pullToRefreshBackgroundView.dragToTriggerOffset = 60.0;
     }
 
+    __weak typeof(self) weakSelf = self;
+    
     [self.collectionView ins_addInfinityScrollWithHeight:60 handler:^(UIScrollView *scrollView) {
-
+        
         int64_t delayInSeconds = 1;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-
-            [self.collectionView performBatchUpdates:^{
-                self.numberOfRows += 15;
+            
+            [weakSelf.collectionView performBatchUpdates:^{
+                weakSelf.numberOfRows += 15;
                 NSMutableArray* newIndexPaths = [NSMutableArray new];
-
-                for(NSInteger i = self.numberOfRows - 15; i < self.numberOfRows; i++) {
+                
+                for(NSInteger i = weakSelf.numberOfRows - 15; i < weakSelf.numberOfRows; i++) {
                     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:i inSection:0];
                     [newIndexPaths addObject:indexPath];
                 }
-                [self.collectionView insertItemsAtIndexPaths:newIndexPaths];
-
+                [weakSelf.collectionView insertItemsAtIndexPaths:newIndexPaths];
+                
             } completion:nil];
             
             [scrollView ins_endInfinityScroll];
-
+            
         });
     }];
 
