@@ -141,7 +141,9 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
     if (self.state == INSPullToRefreshBackgroundViewStateNone) {
         [self changeState:INSPullToRefreshBackgroundViewStateTriggered];
         
-        [self.scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x, -CGRectGetHeight(self.frame) -_externalContentInset.top ) animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.scrollView setContentOffset:CGPointMake(_scrollView.contentOffset.x, -CGRectGetHeight(self.frame) -_externalContentInset.top ) animated:YES];
+        });
         
         [self changeState:INSPullToRefreshBackgroundViewStateLoading];
     }
@@ -151,7 +153,9 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
         [self changeState:INSPullToRefreshBackgroundViewStateNone];
         if (self.scrollToTopAfterEndRefreshing) {
             CGPoint originalContentOffset = CGPointMake(-_externalContentInset.left, -_externalContentInset.top);
-            [self.scrollView setContentOffset:originalContentOffset animated:NO];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.scrollView setContentOffset:originalContentOffset animated:NO];
+            });
         }
     }
 }
