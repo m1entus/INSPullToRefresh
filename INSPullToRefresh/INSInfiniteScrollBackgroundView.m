@@ -102,7 +102,9 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
 
     // The lower bound when infinite scroll should kick in
     CGFloat actionOffset = contentHeight - self.scrollView.bounds.size.height + self.scrollView.contentInset.bottom - self.additionalBottomOffsetForInfinityScrollTrigger;
-
+    // Prevent conflict with pull to refresh when tableView is too short
+    actionOffset = fmaxf(actionOffset, self.additionalBottomOffsetForInfinityScrollTrigger);
+    
     // Disable infinite scroll when scroll view is empty
     // Default UITableView reports height = 1 on empty tables
     BOOL hasActualContent = (self.scrollView.contentSize.height > 1);
