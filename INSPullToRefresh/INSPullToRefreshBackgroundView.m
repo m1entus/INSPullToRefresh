@@ -109,6 +109,18 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
     }
 }
 
+- (void)setEnabled:(BOOL)enabled {
+    if (_enabled != enabled) {
+        _enabled = enabled;
+        if (_enabled) {
+            [self resetFrame];
+        } else {
+            [self endRefreshing];
+        }
+        self.hidden = !_enabled;
+    }
+}
+
 #pragma mark - Initializers
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -128,6 +140,7 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
         _state = INSPullToRefreshBackgroundViewStateNone;
         _preserveContentInset = NO;
         _scrollToTopAfterEndRefreshing = YES;
+        _enabled = YES;
         
         [self resetFrame];
     }
@@ -138,6 +151,10 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 #pragma mark - Public
 
 - (void)beginRefreshing {
+    if (!self.enabled) {
+        return;
+    }
+    
     if (self.state == INSPullToRefreshBackgroundViewStateNone) {
         [self changeState:INSPullToRefreshBackgroundViewStateTriggered];
         
@@ -173,6 +190,11 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 #pragma mark - Observing
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+
+    if (!self.enabled) {
+        return;
+    }
+
     if ([keyPath isEqualToString:@"contentOffset"]) {
         [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
     }

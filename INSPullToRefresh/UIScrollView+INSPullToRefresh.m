@@ -64,6 +64,10 @@ static char INSInfiniteScrollBackgroundViewKey;
     [self.ins_pullToRefreshBackgroundView endRefreshing];
 }
 
+- (void)ins_setPullToRefreshEnabled:(BOOL)enabled {
+    self.ins_pullToRefreshBackgroundView.enabled = enabled;
+}
+
 - (void)ins_addPullToRefreshWithHeight:(CGFloat)height handler:(INSPullToRefreshActionHandler)actionHandler {
 
     [self ins_removePullToRefresh];
@@ -110,6 +114,10 @@ static char INSInfiniteScrollBackgroundViewKey;
         [self.ins_infiniteScrollBackgroundView removeFromSuperview];
         self.ins_infiniteScrollBackgroundView = nil;
     }
+}
+
+- (void)ins_setInfinityScrollEnabled:(BOOL)enabled {
+    self.ins_infiniteScrollBackgroundView.enabled = enabled;
 }
 
 - (void)ins_beginInfinityScroll {

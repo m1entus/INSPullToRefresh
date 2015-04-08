@@ -33,7 +33,6 @@
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [scrollView ins_endPullToRefresh];
-
         });
     }];
     
@@ -72,6 +71,11 @@
             [weakSelf.tableView endUpdates];
             
             [scrollView ins_endInfinityScroll];
+
+            if (weakSelf.numberOfRows > 30) {
+                // Disable infinite scroll after 45 rows
+                scrollView.ins_infiniteScrollBackgroundView.enabled = NO;
+            }
         });
     }];
 

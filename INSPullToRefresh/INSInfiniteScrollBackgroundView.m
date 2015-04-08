@@ -47,6 +47,19 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
     }
 }
 
+- (void)setEnabled:(BOOL)enabled {
+    if (_enabled != enabled) {
+        _enabled = enabled;
+
+        if (_enabled) {
+            [self resetFrame];
+        } else {
+            [self stopInfiniteScroll];
+        }
+
+        self.hidden = !_enabled;
+    }
+}
 
 #pragma mark - Initializers
 
@@ -66,6 +79,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _state = INSInfiniteScrollBackgroundViewStateNone;
         _preserveContentInset = NO;
+        _enabled = YES;
         self.hidden = YES;
 
         [self resetFrame];
@@ -77,6 +91,9 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
 #pragma mark - Observing
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (!self.enabled) {
+        return;
+    }
     if ([keyPath isEqualToString:@"contentOffset"]) {
         [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
     }
@@ -119,6 +136,10 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
 #pragma mark - Public
 
 - (void)beginInfiniteScrolling {
+    if (!self.enabled) {
+        return;
+    }
+
     if (self.state == INSInfiniteScrollBackgroundViewStateNone) {
         [self startInfiniteScroll];
     }

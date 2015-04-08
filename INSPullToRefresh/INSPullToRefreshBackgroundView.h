@@ -59,6 +59,8 @@ typedef NS_ENUM(NSUInteger, INSPullToRefreshBackgroundViewState) {
 
 @property (nonatomic, assign) CGFloat dragToTriggerOffset;
 
+@property (nonatomic, assign) BOOL enabled;
+
 - (instancetype)initWithHeight:(CGFloat)height scrollView:(UIScrollView *)scrollView;
 
 - (void)beginRefreshing;

@@ -37,6 +37,8 @@
 - (void)ins_addPullToRefreshWithHeight:(CGFloat)height handler:(INSPullToRefreshActionHandler)actionHandler;
 - (void)ins_removePullToRefresh;
 
+- (void)ins_setPullToRefreshEnabled:(BOOL)enabled;
+
 - (void)ins_beginPullToRefresh;
 - (void)ins_endPullToRefresh;
 
@@ -44,6 +46,8 @@
 
 - (void)ins_addInfinityScrollWithHeight:(CGFloat)height handler:(INSInfinityScrollActionHandler)actionHandler;
 - (void)ins_removeInfinityScroll;
+
+- (void)ins_setInfinityScrollEnabled:(BOOL)enabled;
 
 - (void)ins_beginInfinityScroll;
 - (void)ins_endInfinityScroll;
