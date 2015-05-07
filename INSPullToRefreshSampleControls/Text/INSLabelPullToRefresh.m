@@ -32,6 +32,11 @@
         self.label.text = _noneState;
         [self addSubview:self.contentView];
         [self addSubview:self.label];
+
+        self.contentView.translatesAutoresizingMaskIntoConstraints = YES;
+        self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        self.label.translatesAutoresizingMaskIntoConstraints = YES;
+        self.label.autoresizingMask = self.contentView.autoresizingMask;
     }
     return self;
 }

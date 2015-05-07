@@ -93,6 +93,9 @@
     self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh;
     [self.tableView.ins_pullToRefreshBackgroundView addSubview:pullToRefresh];
 
+    pullToRefresh.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    pullToRefresh.translatesAutoresizingMaskIntoConstraints = YES;
+    pullToRefresh.frame = self.tableView.ins_pullToRefreshBackgroundView.bounds;
 }
 
 
