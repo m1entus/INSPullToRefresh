@@ -42,7 +42,7 @@ static char INSInfiniteScrollBackgroundViewKey;
 - (void)setIns_pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView {
     objc_setAssociatedObject(self, &INSPullToRefreshBackgroundViewKey,
                              pullToRefreshBackgroundView,
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                             OBJC_ASSOCIATION_ASSIGN);
 }
 
 - (INSInfiniteScrollBackgroundView *)ins_infiniteScrollBackgroundView {
@@ -52,7 +52,7 @@ static char INSInfiniteScrollBackgroundViewKey;
 - (void)setIns_infiniteScrollBackgroundView:(INSInfiniteScrollBackgroundView *)infiniteScrollBackgroundView {
     objc_setAssociatedObject(self, &INSInfiniteScrollBackgroundViewKey,
                              infiniteScrollBackgroundView,
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                             OBJC_ASSOCIATION_ASSIGN);
 }
 
 #pragma mark - Public
