@@ -10,6 +10,7 @@
 #import "UIScrollView+INSPullToRefresh.h"
 
 @interface INSDefaultPullToRefresh : UIView <INSPullToRefreshBackgroundViewDelegate>
+@property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicator;
 
 - (instancetype)initWithFrame:(CGRect)frame backImage:(UIImage *)backCircleImage frontImage:(UIImage *)frontCircleImage;
 
