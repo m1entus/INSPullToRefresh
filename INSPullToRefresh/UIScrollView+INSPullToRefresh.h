@@ -51,5 +51,6 @@
 
 - (void)ins_beginInfinityScroll;
 - (void)ins_endInfinityScroll;
+- (void)ins_endInfinityScrollWithStoppingContentOffset:(BOOL)stopContentOffset;
 
 @end

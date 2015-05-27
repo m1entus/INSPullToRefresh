@@ -54,7 +54,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
         if (_enabled) {
             [self resetFrame];
         } else {
-            [self stopInfiniteScroll];
+            [self stopInfiniteScrollWithStoppingContentOffset:NO];
         }
 
         self.hidden = !_enabled;
@@ -145,8 +145,12 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
     }
 }
 - (void)endInfiniteScrolling {
+    [self endInfiniteScrollingWithStoppingContentOffset:NO];
+}
+
+- (void)endInfiniteScrollingWithStoppingContentOffset:(BOOL)stopContentOffset {
     if(self.state == INSInfiniteScrollBackgroundViewStateLoading) {
-        [self stopInfiniteScroll];
+        [self stopInfiniteScrollWithStoppingContentOffset:stopContentOffset];
     }
 }
 
@@ -206,16 +210,22 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
     [self performSelector:@selector(callInfiniteScrollActionHandler) withObject:self afterDelay:0.1 inModes:@[ NSDefaultRunLoopMode ]];
 }
 
-- (void)stopInfiniteScroll {
+- (void)stopInfiniteScrollWithStoppingContentOffset:(BOOL)stopContentOffset {
     UIEdgeInsets contentInset = self.scrollView.contentInset;
 
     contentInset.bottom -= CGRectGetHeight(self.frame);
 
     // remove extra inset added to pad infinite scroll
     contentInset.bottom -= self.infiniteScrollBottomContentInset;
+    
+    CGPoint offset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y);
 
     __weak typeof(self)weakSelf = self;
-    [self setScrollViewContentInset:contentInset animated:YES completion:^(BOOL finished) {
+    [self setScrollViewContentInset:contentInset animated:!stopContentOffset completion:^(BOOL finished) {
+        
+        if (stopContentOffset) {
+            weakSelf.scrollView.contentOffset = offset;
+        }
         
         if (finished) {
             weakSelf.hidden = YES;

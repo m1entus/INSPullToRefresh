@@ -70,7 +70,7 @@
             
             [weakSelf.tableView endUpdates];
             
-            [scrollView ins_endInfinityScroll];
+            [scrollView ins_endInfinityScrollWithStoppingContentOffset:YES];
 
             if (weakSelf.numberOfRows > 30) {
                 // Disable infinite scroll after 45 rows
@@ -92,10 +92,13 @@
     UIView <INSPullToRefreshBackgroundViewDelegate> *pullToRefresh = [self pullToRefreshViewFromCurrentStyle];
     self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh;
     [self.tableView.ins_pullToRefreshBackgroundView addSubview:pullToRefresh];
+    
+    if (self.style == INSPullToRefreshStyleText) {
+        pullToRefresh.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        pullToRefresh.translatesAutoresizingMaskIntoConstraints = YES;
+        pullToRefresh.frame = self.tableView.ins_pullToRefreshBackgroundView.bounds;
 
-    pullToRefresh.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    pullToRefresh.translatesAutoresizingMaskIntoConstraints = YES;
-    pullToRefresh.frame = self.tableView.ins_pullToRefreshBackgroundView.bounds;
+    }
 }
 
 

@@ -126,6 +126,9 @@ static char INSInfiniteScrollBackgroundViewKey;
 - (void)ins_endInfinityScroll {
     [self.ins_infiniteScrollBackgroundView endInfiniteScrolling];
 }
+- (void)ins_endInfinityScrollWithStoppingContentOffset:(BOOL)stopContentOffset {
+    [self.ins_infiniteScrollBackgroundView endInfiniteScrollingWithStoppingContentOffset:stopContentOffset];
+}
 
 #pragma mark - Private Methods
 

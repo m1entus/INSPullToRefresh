@@ -87,9 +87,12 @@
     self.collectionView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh;
     [self.collectionView.ins_pullToRefreshBackgroundView addSubview:pullToRefresh];
 
-    pullToRefresh.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    pullToRefresh.translatesAutoresizingMaskIntoConstraints = YES;
-    pullToRefresh.frame = self.collectionView.ins_pullToRefreshBackgroundView.bounds;
+    if (self.style == INSPullToRefreshStyleText) {
+        pullToRefresh.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        pullToRefresh.translatesAutoresizingMaskIntoConstraints = YES;
+        pullToRefresh.frame = self.collectionView.ins_pullToRefreshBackgroundView.bounds;
+        
+    }
 }
 
 #pragma mark - <UITableViewDataSource>

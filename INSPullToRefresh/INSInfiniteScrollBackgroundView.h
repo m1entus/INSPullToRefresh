@@ -56,4 +56,5 @@ typedef NS_ENUM(NSUInteger, INSInfiniteScrollBackgroundViewState) {
 
 - (void)beginInfiniteScrolling;
 - (void)endInfiniteScrolling;
+- (void)endInfiniteScrollingWithStoppingContentOffset:(BOOL)stopContentOffset;
 @end
