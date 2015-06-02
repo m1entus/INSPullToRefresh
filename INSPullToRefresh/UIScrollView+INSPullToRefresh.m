@@ -42,7 +42,7 @@ static char INSInfiniteScrollBackgroundViewKey;
 - (void)setIns_pullToRefreshBackgroundView:(INSPullToRefreshBackgroundView *)pullToRefreshBackgroundView {
     objc_setAssociatedObject(self, &INSPullToRefreshBackgroundViewKey,
                              pullToRefreshBackgroundView,
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                             OBJC_ASSOCIATION_ASSIGN);
 }
 
 - (INSInfiniteScrollBackgroundView *)ins_infiniteScrollBackgroundView {
@@ -52,7 +52,7 @@ static char INSInfiniteScrollBackgroundViewKey;
 - (void)setIns_infiniteScrollBackgroundView:(INSInfiniteScrollBackgroundView *)infiniteScrollBackgroundView {
     objc_setAssociatedObject(self, &INSInfiniteScrollBackgroundViewKey,
                              infiniteScrollBackgroundView,
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                             OBJC_ASSOCIATION_ASSIGN);
 }
 
 #pragma mark - Public
@@ -75,45 +75,34 @@ static char INSInfiniteScrollBackgroundViewKey;
     INSPullToRefreshBackgroundView *view = [[INSPullToRefreshBackgroundView alloc] initWithHeight:height scrollView:self];
     [self addSubview:view];
     self.ins_pullToRefreshBackgroundView = view;
-    [self ins_configurePullToRefreshObservers];
-
     self.ins_pullToRefreshBackgroundView.actionHandler = actionHandler;
 }
 
 - (void)ins_removePullToRefresh {
-    if (self.ins_pullToRefreshBackgroundView) {
+    [self ins_removePullToRefreshBackgroundView];
+}
 
-        [self removeObserver:self.ins_pullToRefreshBackgroundView forKeyPath:@"contentOffset"];
-        [self removeObserver:self.ins_pullToRefreshBackgroundView forKeyPath:@"contentSize"];
-        [self removeObserver:self.ins_pullToRefreshBackgroundView forKeyPath:@"frame"];
-        [self removeObserver:self.ins_pullToRefreshBackgroundView forKeyPath:@"contentInset"];
-
-        [self.ins_pullToRefreshBackgroundView removeFromSuperview];
-        self.ins_pullToRefreshBackgroundView = nil;
-    }
+- (void)ins_removePullToRefreshBackgroundView {
+    [self.ins_pullToRefreshBackgroundView removeFromSuperview];
+    self.ins_infiniteScrollBackgroundView = nil;
 }
 
 - (void)ins_addInfinityScrollWithHeight:(CGFloat)height handler:(INSInfinityScrollActionHandler)actionHandler {
-    [self ins_removeInfinityScroll];
+    [self ins_removeInfinityScrollBackgroundView];
 
     INSInfiniteScrollBackgroundView *view = [[INSInfiniteScrollBackgroundView alloc] initWithHeight:height scrollView:self];
     [self addSubview:view];
     self.ins_infiniteScrollBackgroundView = view;
-    [self ins_configureInfinityScrollObservers];
-
     self.ins_infiniteScrollBackgroundView.actionHandler = actionHandler;
 }
+
+- (void)ins_removeInfinityScrollBackgroundView {
+    [self.ins_infiniteScrollBackgroundView removeFromSuperview];
+    self.ins_infiniteScrollBackgroundView = nil;
+}
+
 - (void)ins_removeInfinityScroll {
-    if (self.ins_infiniteScrollBackgroundView) {
-
-        [self removeObserver:self.ins_infiniteScrollBackgroundView forKeyPath:@"contentOffset"];
-        [self removeObserver:self.ins_infiniteScrollBackgroundView forKeyPath:@"contentSize"];
-        [self removeObserver:self.ins_infiniteScrollBackgroundView forKeyPath:@"frame"];
-        [self removeObserver:self.ins_infiniteScrollBackgroundView forKeyPath:@"contentInset"];
-
-        [self.ins_infiniteScrollBackgroundView removeFromSuperview];
-        self.ins_infiniteScrollBackgroundView = nil;
-    }
+    [self ins_removeInfinityScrollBackgroundView];
 }
 
 - (void)ins_setInfinityScrollEnabled:(BOOL)enabled {
@@ -128,22 +117,6 @@ static char INSInfiniteScrollBackgroundViewKey;
 }
 - (void)ins_endInfinityScrollWithStoppingContentOffset:(BOOL)stopContentOffset {
     [self.ins_infiniteScrollBackgroundView endInfiniteScrollingWithStoppingContentOffset:stopContentOffset];
-}
-
-#pragma mark - Private Methods
-
-- (void)ins_configurePullToRefreshObservers {
-    [self addObserver:self.ins_pullToRefreshBackgroundView forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-    [self addObserver:self.ins_pullToRefreshBackgroundView forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
-    [self addObserver:self.ins_pullToRefreshBackgroundView forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-    [self addObserver:self.ins_pullToRefreshBackgroundView forKeyPath:@"contentInset" options:NSKeyValueObservingOptionNew context:nil];
-}
-
-- (void)ins_configureInfinityScrollObservers {
-    [self addObserver:self.ins_infiniteScrollBackgroundView forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-    [self addObserver:self.ins_infiniteScrollBackgroundView forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
-    [self addObserver:self.ins_infiniteScrollBackgroundView forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-    [self addObserver:self.ins_infiniteScrollBackgroundView forKeyPath:@"contentInset" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 @end

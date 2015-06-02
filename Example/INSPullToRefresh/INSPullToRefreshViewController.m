@@ -132,11 +132,6 @@
         }
     }
 }
-#pragma mark - dealloc
 
-- (void)dealloc {
-    [self.tableView ins_removeInfinityScroll];
-    [self.tableView ins_removePullToRefresh];
-}
 
 @end

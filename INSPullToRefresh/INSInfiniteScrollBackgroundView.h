@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, INSInfiniteScrollBackgroundViewState) {
 
 @interface INSInfiniteScrollBackgroundView : UIView
 @property (nonatomic, copy) INSInfinityScrollActionHandler actionHandler;
-@property (nonatomic, weak) UIScrollView *scrollView;
+@property (nonatomic, weak, readonly) UIScrollView *scrollView;
 
 @property (nonatomic, weak) id <INSInfiniteScrollBackgroundViewDelegate> delegate;
 
@@ -49,6 +49,7 @@ typedef NS_ENUM(NSUInteger, INSInfiniteScrollBackgroundViewState) {
 @property (nonatomic, assign) BOOL preserveContentInset;
 
 @property (nonatomic, assign) BOOL enabled;
+@property (nonatomic, assign) BOOL shouldShowWhenDisabled;
 
 @property (nonatomic, assign) CGFloat additionalBottomOffsetForInfinityScrollTrigger;
 

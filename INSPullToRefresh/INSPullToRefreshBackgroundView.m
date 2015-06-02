@@ -61,6 +61,7 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 #define fequal(a,b) (fabs((a) - (b)) < FLT_EPSILON)
 
 @interface INSPullToRefreshBackgroundView ()
+@property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, readwrite) INSPullToRefreshBackgroundViewState state;
 @property (nonatomic, assign) UIEdgeInsets externalContentInset;
 @property (nonatomic, assign, getter = isUpdatingScrollViewContentInset) BOOL updatingScrollViewContentInset;
@@ -188,6 +189,36 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 }
 
 #pragma mark - Observing
+
+- (void)willMoveToSuperview:(UIView *)newSuperview {
+    [super willMoveToSuperview:newSuperview];
+
+    if (self.superview) {
+        [self removeObserversFromView:self.superview];
+    }
+    
+    if (newSuperview) {
+        [self addScrollViewObservers:newSuperview];
+    }
+}
+
+- (void)removeObserversFromView:(UIView *)view {
+    NSParameterAssert([view isKindOfClass:[UIScrollView class]]);
+
+    [view removeObserver:self forKeyPath:@"contentOffset"];
+    [view removeObserver:self forKeyPath:@"contentSize"];
+    [view removeObserver:self forKeyPath:@"frame"];
+    [view removeObserver:self forKeyPath:@"contentInset"];
+}
+
+- (void)addScrollViewObservers:(UIView *)view {
+    NSParameterAssert([view isKindOfClass:[UIScrollView class]]);
+
+    [view addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+    [view addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    [view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+    [view addObserver:self forKeyPath:@"contentInset" options:NSKeyValueObservingOptionNew context:nil];
+}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 

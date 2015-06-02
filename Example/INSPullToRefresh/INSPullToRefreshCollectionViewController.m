@@ -116,11 +116,6 @@
         }
     }
 }
-#pragma mark - dealloc
 
-- (void)dealloc {
-    [self.collectionView ins_removeInfinityScroll];
-    [self.collectionView ins_removePullToRefresh];
-}
 
 @end

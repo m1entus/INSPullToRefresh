@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, INSPullToRefreshBackgroundViewState) {
 @interface INSPullToRefreshBackgroundView : UIView
 
 @property (nonatomic, copy) INSPullToRefreshActionHandler actionHandler;
-@property (nonatomic, weak) UIScrollView *scrollView;
+@property (nonatomic, weak, readonly) UIScrollView *scrollView;
 
 @property (nonatomic, weak) id <INSPullToRefreshBackgroundViewDelegate> delegate;
 
