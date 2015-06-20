@@ -27,6 +27,8 @@
         self.tableView.contentInset = UIEdgeInsetsMake(100.0f, 0.0f, 100.0f, 0.0f);
     }
 
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
 
     [self.tableView ins_addPullToRefreshWithHeight:60.0 handler:^(UIScrollView *scrollView) {
         int64_t delayInSeconds = 1;
@@ -123,6 +125,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"segue" sender:nil];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

@@ -57,6 +57,8 @@ typedef NS_ENUM(NSUInteger, INSPullToRefreshBackgroundViewState) {
 @property (nonatomic, assign) BOOL preserveContentInset;
 @property (nonatomic, assign) BOOL scrollToTopAfterEndRefreshing;
 
+@property (nonatomic, assign) BOOL automaticallyTurnOffAdjustsScrollViewInsetsWhenTranslucentNavigationBar;
+
 @property (nonatomic, assign) CGFloat dragToTriggerOffset;
 
 @property (nonatomic, assign) BOOL enabled;

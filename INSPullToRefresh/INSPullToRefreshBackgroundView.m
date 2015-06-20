@@ -54,6 +54,7 @@
 
 #import "INSPullToRefreshBackgroundView.h"
 #import "UIScrollView+INSPullToRefresh.h"
+#import "UIView+INSFirstReponder.h"
 
 CGFloat const INSPullToRefreshDefaultResetContentInsetAnimationTime = 0.3;
 CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
@@ -134,6 +135,7 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
     
     CGRect frame = CGRectMake(0.0f, 0.0f, 0.0f, height);
     if (self = [super initWithFrame:frame]) {
+        _automaticallyTurnOffAdjustsScrollViewInsetsWhenTranslucentNavigationBar = YES;
         _dragToTriggerOffset = INSPullToRefreshDefaultDragToTriggerOffset;
         _scrollView = scrollView;
         _externalContentInset = scrollView.contentInset;
@@ -192,13 +194,26 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     [super willMoveToSuperview:newSuperview];
-
     if (self.superview) {
         [self removeObserversFromView:self.superview];
     }
     
     if (newSuperview) {
         [self addScrollViewObservers:newSuperview];
+    }
+}
+
+- (void)didMoveToSuperview {
+    [super didMoveToSuperview];
+    
+    if (self.automaticallyTurnOffAdjustsScrollViewInsetsWhenTranslucentNavigationBar) {
+        UIViewController *firstReponderViewController = [self ins_firstResponderViewController];
+        
+        if (firstReponderViewController.navigationController && firstReponderViewController.navigationController.navigationBar.translucent && firstReponderViewController.automaticallyAdjustsScrollViewInsets && self.scrollView.superview == firstReponderViewController.view) {
+            firstReponderViewController.automaticallyAdjustsScrollViewInsets = NO;
+            self.scrollView.contentInset = UIEdgeInsetsMake(firstReponderViewController.navigationController.navigationBar.frame.origin.y + firstReponderViewController.navigationController.navigationBar.bounds.size.height, self.scrollView.contentInset.left, self.scrollView.contentInset.bottom, self.scrollView.contentInset.right);
+            self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset;
+        }
     }
 }
 
@@ -225,7 +240,9 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
     if (!self.enabled) {
         return;
     }
-
+    
+    NSLog(@"%@ %@",keyPath,change[@"new"]);
+    
     if ([keyPath isEqualToString:@"contentOffset"]) {
         [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
     }
@@ -255,7 +272,6 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 
 - (void)scrollViewDidScroll:(CGPoint)contentOffset {
     if (self.state == INSPullToRefreshBackgroundViewStateLoading) {
-        
         UIEdgeInsets loadingInset = self.externalContentInset;
         CGFloat top = loadingInset.top + CGRectGetHeight(self.bounds);
         
