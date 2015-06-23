@@ -241,7 +241,7 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
         return;
     }
     
-    NSLog(@"%@ %@",keyPath,change[@"new"]);
+    //NSLog(@"%@ %@",keyPath,change[@"new"]);
     
     if ([keyPath isEqualToString:@"contentOffset"]) {
         [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
