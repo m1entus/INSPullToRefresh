@@ -84,7 +84,7 @@ static char INSInfiniteScrollBackgroundViewKey;
 
 - (void)ins_removePullToRefreshBackgroundView {
     [self.ins_pullToRefreshBackgroundView removeFromSuperview];
-    self.ins_infiniteScrollBackgroundView = nil;
+    self.ins_pullToRefreshBackgroundView = nil;
 }
 
 - (void)ins_addInfinityScrollWithHeight:(CGFloat)height handler:(INSInfinityScrollActionHandler)actionHandler {
