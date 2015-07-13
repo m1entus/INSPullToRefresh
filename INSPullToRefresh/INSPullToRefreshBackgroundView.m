@@ -275,8 +275,8 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
         UIEdgeInsets loadingInset = self.externalContentInset;
         CGFloat top = loadingInset.top + CGRectGetHeight(self.bounds);
         
-        if ([self isScrollViewIsTableViewAndHaveSections] && self.scrollView.contentOffset.y > -CGRectGetHeight(self.bounds)) {
-            if (self.scrollView.contentOffset.y >= 0) {
+		if ([self isScrollViewIsTableViewAndHaveSections] && self.scrollView.contentOffset.y > -(CGRectGetHeight(self.bounds) + self.externalContentInset.top)) {
+			if (self.scrollView.contentOffset.y >= - self.externalContentInset.top) {
                 top = loadingInset.top;
             } else {
                 top = fabs(self.scrollView.contentOffset.y);
