@@ -267,7 +267,7 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 - (BOOL)isScrollViewIsTableViewAndHaveSections {
     if ([self.scrollView isKindOfClass:[UITableView class]]) {
         UITableView *tableView = (UITableView *)self.scrollView;
-        return tableView.numberOfSections > 1;
+        return tableView.numberOfSections > 0;
     }
     return NO;
 }
