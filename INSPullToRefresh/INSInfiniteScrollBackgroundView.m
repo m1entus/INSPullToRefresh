@@ -212,6 +212,9 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
 }
 
 - (CGFloat)adjustedHeightFromScrollViewContentSize {
+    if (self.scrollView.contentSize.height <= 0) {
+        return 0;
+    }
     CGFloat remainingHeight = self.bounds.size.height - self.scrollView.contentInset.top - self.scrollView.contentInset.bottom;
     if(self.scrollView.contentSize.height < remainingHeight) {
         return remainingHeight;
