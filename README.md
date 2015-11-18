@@ -39,15 +39,6 @@ self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh;
 [self.tableView.ins_pullToRefreshBackgroundView addSubview:pullToRefresh];
 ```
 
-```objective-c
-#pragma mark - dealloc
-
-- (void)dealloc {
-    [self.tableView ins_removeInfinityScroll];
-    [self.tableView ins_removePullToRefresh];
-}
-```
-
 All you need to do is handle two INSPullToRefreshBackgroundViewDelegate methods in your custom view.
 
 ```objective-c
