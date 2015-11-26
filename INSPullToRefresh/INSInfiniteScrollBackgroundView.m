@@ -55,7 +55,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
         if (_enabled) {
             [self resetFrame];
         } else {
-            [self stopInfiniteScrollWithStoppingContentOffset:NO];
+            [self endInfiniteScrollingWithStoppingContentOffset:NO];
         }
 
         if (!self.shouldShowWhenDisabled) {
