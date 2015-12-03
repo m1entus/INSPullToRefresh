@@ -20,6 +20,10 @@ We wrote couple samples that can be found in popular apps like Facebook, Vine, T
 [![](https://raw.github.com/inspace-io/INSPullToRefresh/master/Screens/4.png)](https://raw.github.com/inspace-io/INSPullToRefresh/master/Screens/4.png)
 
 
+# Known Issue
+
+`automaticallyAdjustsScrollViewInsets` property on UIViewController which is by default to YES is breaking a lot of stuff, so it will be automatically turned off when adding pull to refresh and managed by library manually.
+
 # Usage
 ```objective-c
 [self.tableView ins_addPullToRefreshWithHeight:60.0 handler:^(UIScrollView *scrollView) {

@@ -55,6 +55,7 @@
 #import "INSPullToRefreshBackgroundView.h"
 #import "UIScrollView+INSPullToRefresh.h"
 #import "UIView+INSFirstReponder.h"
+#import "MZMethodSwizzler.h"
 
 CGFloat const INSPullToRefreshDefaultResetContentInsetAnimationTime = 0.3;
 CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
@@ -135,7 +136,6 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
     
     CGRect frame = CGRectMake(0.0f, 0.0f, 0.0f, height);
     if (self = [super initWithFrame:frame]) {
-        _automaticallyTurnOffAdjustsScrollViewInsetsWhenTranslucentNavigationBar = YES;
         _dragToTriggerOffset = INSPullToRefreshDefaultDragToTriggerOffset;
         _scrollView = scrollView;
         _externalContentInset = scrollView.contentInset;
@@ -195,6 +195,7 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 #pragma mark - Observing
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
+    
     [super willMoveToSuperview:newSuperview];
     if (self.superview) {
         [self removeObserversFromView:self.superview];
@@ -208,15 +209,47 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 - (void)didMoveToSuperview {
     [super didMoveToSuperview];
     
-    if (self.automaticallyTurnOffAdjustsScrollViewInsetsWhenTranslucentNavigationBar) {
-        UIViewController *firstReponderViewController = [self ins_firstResponderViewController];
+    UIViewController *firstReponderViewController = [self ins_firstResponderViewController];
+    firstReponderViewController.automaticallyAdjustsScrollViewInsets = NO;
+    
+    if (firstReponderViewController.navigationController && firstReponderViewController.navigationController.navigationBar.translucent && (firstReponderViewController.edgesForExtendedLayout & UIRectEdgeTop)) {
         
-        if (firstReponderViewController.navigationController && firstReponderViewController.navigationController.navigationBar.translucent && firstReponderViewController.automaticallyAdjustsScrollViewInsets && self.scrollView.superview == firstReponderViewController.view) {
-            firstReponderViewController.automaticallyAdjustsScrollViewInsets = NO;
-            self.scrollView.contentInset = UIEdgeInsetsMake(firstReponderViewController.navigationController.navigationBar.frame.origin.y + firstReponderViewController.navigationController.navigationBar.bounds.size.height, self.scrollView.contentInset.left, self.scrollView.contentInset.bottom, self.scrollView.contentInset.right);
-            self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset;
+        self.scrollView.contentInset = UIEdgeInsetsMake(firstReponderViewController.navigationController.navigationBar.frame.origin.y + firstReponderViewController.navigationController.navigationBar.bounds.size.height, self.scrollView.contentInset.left, self.scrollView.contentInset.bottom, self.scrollView.contentInset.right);
+        self.scrollView.scrollIndicatorInsets = self.scrollView.contentInset;
+        
+        IMP originalViewControllerWillRotateSelectorImplementation = [UIViewController instanceMethodForSelector:@selector(willAnimateRotationToInterfaceOrientation:duration:)];
+        IMP firstResponderViewControllerWillRotateSelectorImplementation = [[firstReponderViewController class] instanceMethodForSelector:@selector(willAnimateRotationToInterfaceOrientation:duration:)];
+        
+        __weak typeof(self) weakSelf = self;
+        
+        void(^animationBlock)() = ^(UIViewController *controller) {
+            weakSelf.externalContentInset = UIEdgeInsetsMake(controller.navigationController.navigationBar.frame.origin.y + controller.navigationController.navigationBar.bounds.size.height, 0, 0, 0);
+            [weakSelf resetFrame];
+            weakSelf.scrollView.scrollIndicatorInsets = weakSelf.externalContentInset;
+            [weakSelf resetScrollViewContentInsetWithCompletion:nil];
+        };
+        
+        // first responder implement willRotateToInterfaceOrientation
+        if (((void(*)(id,SEL,UIInterfaceOrientation,NSTimeInterval))originalViewControllerWillRotateSelectorImplementation) != ((void(*)(id,SEL,UIInterfaceOrientation,NSTimeInterval))firstResponderViewControllerWillRotateSelectorImplementation)) {
+            
+            [firstReponderViewController swizzleMethod:@selector(willAnimateRotationToInterfaceOrientation:duration:) withReplacement:MZMethodReplacementProviderBlock {
+                return MZMethodReplacement(void, UIViewController *, UIInterfaceOrientation orientation, NSTimeInterval duration) {
+                    animationBlock(self);
+                    MZOriginalImplementation(void,orientation,duration);
+                };
+            }];
         }
-    }
+        
+        [firstReponderViewController swizzleMethod:@selector(viewWillTransitionToSize:withTransitionCoordinator:) withReplacement:MZMethodReplacementProviderBlock {
+            return MZMethodReplacement(void, UIViewController *, CGSize size, id<UIViewControllerTransitionCoordinator> coordinator) {
+                
+                [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+                    animationBlock(self);
+                } completion:nil];
+                MZOriginalImplementation(void,size,coordinator);
+            };
+        }];
+    } 
 }
 
 - (void)removeObserversFromView:(UIView *)view {
@@ -242,8 +275,6 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
     if (!self.enabled) {
         return;
     }
-    
-    //NSLog(@"%@ %@",keyPath,change[@"new"]);
     
     if ([keyPath isEqualToString:@"contentOffset"]) {
         [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];

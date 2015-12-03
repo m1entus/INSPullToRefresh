@@ -32,6 +32,7 @@
 		06FA69CE1A9A0C2D00DF42E6 /* INSInfiniteScrollBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA69C91A9A0C2D00DF42E6 /* INSInfiniteScrollBackgroundView.m */; };
 		06FA69CF1A9A0C2D00DF42E6 /* INSPullToRefreshBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA69CB1A9A0C2D00DF42E6 /* INSPullToRefreshBackgroundView.m */; };
 		06FA69D01A9A0C2D00DF42E6 /* UIScrollView+INSPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA69CD1A9A0C2D00DF42E6 /* UIScrollView+INSPullToRefresh.m */; };
+		641487D31C10C63300CAE640 /* MZMethodSwizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 641487D21C10C63300CAE640 /* MZMethodSwizzler.m */; };
 		64D703F11B359B5400737023 /* UIView+INSFirstReponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D703F01B359B5400737023 /* UIView+INSFirstReponder.m */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,8 @@
 		06FA69CB1A9A0C2D00DF42E6 /* INSPullToRefreshBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSPullToRefreshBackgroundView.m; sourceTree = "<group>"; };
 		06FA69CC1A9A0C2D00DF42E6 /* UIScrollView+INSPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+INSPullToRefresh.h"; sourceTree = "<group>"; };
 		06FA69CD1A9A0C2D00DF42E6 /* UIScrollView+INSPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+INSPullToRefresh.m"; sourceTree = "<group>"; };
+		641487D11C10C63300CAE640 /* MZMethodSwizzler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMethodSwizzler.h; sourceTree = "<group>"; };
+		641487D21C10C63300CAE640 /* MZMethodSwizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMethodSwizzler.m; sourceTree = "<group>"; };
 		64D703EF1B359B5400737023 /* UIView+INSFirstReponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+INSFirstReponder.h"; sourceTree = "<group>"; };
 		64D703F01B359B5400737023 /* UIView+INSFirstReponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+INSFirstReponder.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,6 +277,8 @@
 		06FA69C71A9A0C2D00DF42E6 /* INSPullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				641487D11C10C63300CAE640 /* MZMethodSwizzler.h */,
+				641487D21C10C63300CAE640 /* MZMethodSwizzler.m */,
 				06FA69C81A9A0C2D00DF42E6 /* INSInfiniteScrollBackgroundView.h */,
 				06FA69C91A9A0C2D00DF42E6 /* INSInfiniteScrollBackgroundView.m */,
 				06FA69CA1A9A0C2D00DF42E6 /* INSPullToRefreshBackgroundView.h */,
@@ -392,6 +397,7 @@
 				0661A3771A9A63FA002DDE83 /* INSBaseViewController.m in Sources */,
 				06FA69BD1A9A0C2100DF42E6 /* INSCirclePullToRefresh.m in Sources */,
 				06FA69C11A9A0C2100DF42E6 /* INSLappsyPullToRefresh.m in Sources */,
+				641487D31C10C63300CAE640 /* MZMethodSwizzler.m in Sources */,
 				0602946A1A9525F000AD8673 /* INSPullToRefreshViewController.m in Sources */,
 				06FA69C31A9A0C2100DF42E6 /* INSLabelPullToRefresh.m in Sources */,
 				64D703F11B359B5400737023 /* UIView+INSFirstReponder.m in Sources */,
