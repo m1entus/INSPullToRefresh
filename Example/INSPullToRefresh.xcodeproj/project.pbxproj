@@ -33,6 +33,19 @@
 		06FA69CF1A9A0C2D00DF42E6 /* INSPullToRefreshBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA69CB1A9A0C2D00DF42E6 /* INSPullToRefreshBackgroundView.m */; };
 		06FA69D01A9A0C2D00DF42E6 /* UIScrollView+INSPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA69CD1A9A0C2D00DF42E6 /* UIScrollView+INSPullToRefresh.m */; };
 		641487D31C10C63300CAE640 /* MZMethodSwizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 641487D21C10C63300CAE640 /* MZMethodSwizzler.m */; };
+		641487DC1C10E0EF00CAE640 /* INSPullToRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 641487DB1C10E0EF00CAE640 /* INSPullToRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		641487E01C10E0EF00CAE640 /* INSPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641487D91C10E0EF00CAE640 /* INSPullToRefresh.framework */; };
+		641487E11C10E0EF00CAE640 /* INSPullToRefresh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 641487D91C10E0EF00CAE640 /* INSPullToRefresh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		641487E61C10E10C00CAE640 /* MZMethodSwizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 641487D21C10C63300CAE640 /* MZMethodSwizzler.m */; };
+		641487E71C10E10C00CAE640 /* INSInfiniteScrollBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA69C91A9A0C2D00DF42E6 /* INSInfiniteScrollBackgroundView.m */; };
+		641487E81C10E10C00CAE640 /* INSPullToRefreshBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA69CB1A9A0C2D00DF42E6 /* INSPullToRefreshBackgroundView.m */; };
+		641487E91C10E10C00CAE640 /* UIScrollView+INSPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA69CD1A9A0C2D00DF42E6 /* UIScrollView+INSPullToRefresh.m */; };
+		641487EA1C10E10C00CAE640 /* UIView+INSFirstReponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D703F01B359B5400737023 /* UIView+INSFirstReponder.m */; };
+		641487EB1C10E15300CAE640 /* MZMethodSwizzler.h in Headers */ = {isa = PBXBuildFile; fileRef = 641487D11C10C63300CAE640 /* MZMethodSwizzler.h */; };
+		641487EC1C10E15300CAE640 /* INSInfiniteScrollBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 06FA69C81A9A0C2D00DF42E6 /* INSInfiniteScrollBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		641487ED1C10E15300CAE640 /* INSPullToRefreshBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 06FA69CA1A9A0C2D00DF42E6 /* INSPullToRefreshBackgroundView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		641487EE1C10E15300CAE640 /* UIScrollView+INSPullToRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 06FA69CC1A9A0C2D00DF42E6 /* UIScrollView+INSPullToRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		641487EF1C10E15300CAE640 /* UIView+INSFirstReponder.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D703EF1B359B5400737023 /* UIView+INSFirstReponder.h */; };
 		64D703F11B359B5400737023 /* UIView+INSFirstReponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D703F01B359B5400737023 /* UIView+INSFirstReponder.m */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +57,28 @@
 			remoteGlobalIDString = 0602945D1A9525F000AD8673;
 			remoteInfo = INSPullToRefresh;
 		};
+		641487DE1C10E0EF00CAE640 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 060294561A9525F000AD8673 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 641487D81C10E0EF00CAE640;
+			remoteInfo = "INSPullToRefresh Framework";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		641487E51C10E0EF00CAE640 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				641487E11C10E0EF00CAE640 /* INSPullToRefresh.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0602945E1A9525F000AD8673 /* INSPullToRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = INSPullToRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +131,9 @@
 		06FA69CD1A9A0C2D00DF42E6 /* UIScrollView+INSPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+INSPullToRefresh.m"; sourceTree = "<group>"; };
 		641487D11C10C63300CAE640 /* MZMethodSwizzler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMethodSwizzler.h; sourceTree = "<group>"; };
 		641487D21C10C63300CAE640 /* MZMethodSwizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMethodSwizzler.m; sourceTree = "<group>"; };
+		641487D91C10E0EF00CAE640 /* INSPullToRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = INSPullToRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		641487DB1C10E0EF00CAE640 /* INSPullToRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INSPullToRefresh.h; sourceTree = "<group>"; };
+		641487DD1C10E0EF00CAE640 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64D703EF1B359B5400737023 /* UIView+INSFirstReponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+INSFirstReponder.h"; sourceTree = "<group>"; };
 		64D703F01B359B5400737023 /* UIView+INSFirstReponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+INSFirstReponder.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,10 +143,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				641487E01C10E0EF00CAE640 /* INSPullToRefresh.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		060294741A9525F000AD8673 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		641487D51C10E0EF00CAE640 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -126,6 +171,7 @@
 				06FA699D1A9A0C2100DF42E6 /* INSPullToRefreshSampleControls */,
 				060294601A9525F000AD8673 /* INSPullToRefreshExample */,
 				0602947A1A9525F000AD8673 /* INSPullToRefreshTests */,
+				641487DA1C10E0EF00CAE640 /* INSPullToRefresh Framework */,
 				0602945F1A9525F000AD8673 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -135,6 +181,7 @@
 			children = (
 				0602945E1A9525F000AD8673 /* INSPullToRefresh.app */,
 				060294771A9525F000AD8673 /* INSPullToRefreshTests.xctest */,
+				641487D91C10E0EF00CAE640 /* INSPullToRefresh.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -292,7 +339,32 @@
 			path = ../INSPullToRefresh;
 			sourceTree = "<group>";
 		};
+		641487DA1C10E0EF00CAE640 /* INSPullToRefresh Framework */ = {
+			isa = PBXGroup;
+			children = (
+				641487DB1C10E0EF00CAE640 /* INSPullToRefresh.h */,
+				641487DD1C10E0EF00CAE640 /* Info.plist */,
+			);
+			path = "INSPullToRefresh Framework";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		641487D61C10E0EF00CAE640 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				641487DC1C10E0EF00CAE640 /* INSPullToRefresh.h in Headers */,
+				641487EC1C10E15300CAE640 /* INSInfiniteScrollBackgroundView.h in Headers */,
+				641487ED1C10E15300CAE640 /* INSPullToRefreshBackgroundView.h in Headers */,
+				641487EE1C10E15300CAE640 /* UIScrollView+INSPullToRefresh.h in Headers */,
+				641487EB1C10E15300CAE640 /* MZMethodSwizzler.h in Headers */,
+				641487EF1C10E15300CAE640 /* UIView+INSFirstReponder.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		0602945D1A9525F000AD8673 /* INSPullToRefresh */ = {
@@ -302,10 +374,12 @@
 				0602945A1A9525F000AD8673 /* Sources */,
 				0602945B1A9525F000AD8673 /* Frameworks */,
 				0602945C1A9525F000AD8673 /* Resources */,
+				641487E51C10E0EF00CAE640 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				641487DF1C10E0EF00CAE640 /* PBXTargetDependency */,
 			);
 			name = INSPullToRefresh;
 			productName = INSPullToRefresh;
@@ -330,6 +404,24 @@
 			productReference = 060294771A9525F000AD8673 /* INSPullToRefreshTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		641487D81C10E0EF00CAE640 /* INSPullToRefresh Framework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 641487E21C10E0EF00CAE640 /* Build configuration list for PBXNativeTarget "INSPullToRefresh Framework" */;
+			buildPhases = (
+				641487D41C10E0EF00CAE640 /* Sources */,
+				641487D51C10E0EF00CAE640 /* Frameworks */,
+				641487D61C10E0EF00CAE640 /* Headers */,
+				641487D71C10E0EF00CAE640 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "INSPullToRefresh Framework";
+			productName = "INSPullToRefresh Framework";
+			productReference = 641487D91C10E0EF00CAE640 /* INSPullToRefresh.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -345,6 +437,9 @@
 					060294761A9525F000AD8673 = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 0602945D1A9525F000AD8673;
+					};
+					641487D81C10E0EF00CAE640 = {
+						CreatedOnToolsVersion = 7.1.1;
 					};
 				};
 			};
@@ -363,6 +458,7 @@
 			targets = (
 				0602945D1A9525F000AD8673 /* INSPullToRefresh */,
 				060294761A9525F000AD8673 /* INSPullToRefreshTests */,
+				641487D81C10E0EF00CAE640 /* INSPullToRefresh Framework */,
 			);
 		};
 /* End PBXProject section */
@@ -381,6 +477,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		060294751A9525F000AD8673 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		641487D71C10E0EF00CAE640 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -426,6 +529,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		641487D41C10E0EF00CAE640 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				641487E61C10E10C00CAE640 /* MZMethodSwizzler.m in Sources */,
+				641487E71C10E10C00CAE640 /* INSInfiniteScrollBackgroundView.m in Sources */,
+				641487E81C10E10C00CAE640 /* INSPullToRefreshBackgroundView.m in Sources */,
+				641487E91C10E10C00CAE640 /* UIScrollView+INSPullToRefresh.m in Sources */,
+				641487EA1C10E10C00CAE640 /* UIView+INSFirstReponder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -433,6 +548,11 @@
 			isa = PBXTargetDependency;
 			target = 0602945D1A9525F000AD8673 /* INSPullToRefresh */;
 			targetProxy = 060294781A9525F000AD8673 /* PBXContainerItemProxy */;
+		};
+		641487DF1C10E0EF00CAE640 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 641487D81C10E0EF00CAE640 /* INSPullToRefresh Framework */;
+			targetProxy = 641487DE1C10E0EF00CAE640 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -592,6 +712,56 @@
 			};
 			name = Release;
 		};
+		641487E31C10E0EF00CAE640 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "INSPullToRefresh Framework/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.inspace.INSPullToRefresh;
+				PRODUCT_MODULE_NAME = INSPullToRefresh;
+				PRODUCT_NAME = INSPullToRefresh;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		641487E41C10E0EF00CAE640 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "INSPullToRefresh Framework/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.inspace.INSPullToRefresh;
+				PRODUCT_MODULE_NAME = INSPullToRefresh;
+				PRODUCT_NAME = INSPullToRefresh;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -621,6 +791,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		641487E21C10E0EF00CAE640 /* Build configuration list for PBXNativeTarget "INSPullToRefresh Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				641487E31C10E0EF00CAE640 /* Debug */,
+				641487E41C10E0EF00CAE640 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
