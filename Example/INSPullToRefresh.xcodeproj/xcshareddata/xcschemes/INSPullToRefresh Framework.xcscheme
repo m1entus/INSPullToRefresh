@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "641487D81C10E0EF00CAE640"
-               BuildableName = "INSPullToRefresh Framework.framework"
+               BuildableName = "INSPullToRefresh.framework"
                BlueprintName = "INSPullToRefresh Framework"
                ReferencedContainer = "container:INSPullToRefresh.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "641487D81C10E0EF00CAE640"
-            BuildableName = "INSPullToRefresh Framework.framework"
+            BuildableName = "INSPullToRefresh.framework"
             BlueprintName = "INSPullToRefresh Framework"
             ReferencedContainer = "container:INSPullToRefresh.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "641487D81C10E0EF00CAE640"
-            BuildableName = "INSPullToRefresh Framework.framework"
+            BuildableName = "INSPullToRefresh.framework"
             BlueprintName = "INSPullToRefresh Framework"
             ReferencedContainer = "container:INSPullToRefresh.xcodeproj">
          </BuildableReference>

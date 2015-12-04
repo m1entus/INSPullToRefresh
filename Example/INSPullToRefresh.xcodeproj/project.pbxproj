@@ -34,8 +34,6 @@
 		06FA69D01A9A0C2D00DF42E6 /* UIScrollView+INSPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA69CD1A9A0C2D00DF42E6 /* UIScrollView+INSPullToRefresh.m */; };
 		641487D31C10C63300CAE640 /* MZMethodSwizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 641487D21C10C63300CAE640 /* MZMethodSwizzler.m */; };
 		641487DC1C10E0EF00CAE640 /* INSPullToRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 641487DB1C10E0EF00CAE640 /* INSPullToRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		641487E01C10E0EF00CAE640 /* INSPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641487D91C10E0EF00CAE640 /* INSPullToRefresh.framework */; };
-		641487E11C10E0EF00CAE640 /* INSPullToRefresh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 641487D91C10E0EF00CAE640 /* INSPullToRefresh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		641487E61C10E10C00CAE640 /* MZMethodSwizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 641487D21C10C63300CAE640 /* MZMethodSwizzler.m */; };
 		641487E71C10E10C00CAE640 /* INSInfiniteScrollBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA69C91A9A0C2D00DF42E6 /* INSInfiniteScrollBackgroundView.m */; };
 		641487E81C10E10C00CAE640 /* INSPullToRefreshBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FA69CB1A9A0C2D00DF42E6 /* INSPullToRefreshBackgroundView.m */; };
@@ -57,28 +55,7 @@
 			remoteGlobalIDString = 0602945D1A9525F000AD8673;
 			remoteInfo = INSPullToRefresh;
 		};
-		641487DE1C10E0EF00CAE640 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 060294561A9525F000AD8673 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 641487D81C10E0EF00CAE640;
-			remoteInfo = "INSPullToRefresh Framework";
-		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		641487E51C10E0EF00CAE640 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				641487E11C10E0EF00CAE640 /* INSPullToRefresh.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0602945E1A9525F000AD8673 /* INSPullToRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = INSPullToRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,7 +120,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				641487E01C10E0EF00CAE640 /* INSPullToRefresh.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,12 +350,10 @@
 				0602945A1A9525F000AD8673 /* Sources */,
 				0602945B1A9525F000AD8673 /* Frameworks */,
 				0602945C1A9525F000AD8673 /* Resources */,
-				641487E51C10E0EF00CAE640 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				641487DF1C10E0EF00CAE640 /* PBXTargetDependency */,
 			);
 			name = INSPullToRefresh;
 			productName = INSPullToRefresh;
@@ -549,11 +523,6 @@
 			target = 0602945D1A9525F000AD8673 /* INSPullToRefresh */;
 			targetProxy = 060294781A9525F000AD8673 /* PBXContainerItemProxy */;
 		};
-		641487DF1C10E0EF00CAE640 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 641487D81C10E0EF00CAE640 /* INSPullToRefresh Framework */;
-			targetProxy = 641487DE1C10E0EF00CAE640 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -658,7 +627,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = INSPullToRefresh/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -670,7 +639,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = INSPullToRefresh/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -799,6 +768,7 @@
 				641487E41C10E0EF00CAE640 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
