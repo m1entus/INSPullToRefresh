@@ -74,15 +74,22 @@ static NSString* const INSInfiniteIndicatorSpinAnimationKey = @"SpinAnimation";
     animationGroup.duration = 1.0;
     animationGroup.repeatCount = INFINITY;
     animationGroup.animations = @[ scaleAnimation, opacityAnimation ];
+    animationGroup.removedOnCompletion = NO;
+    animationGroup.fillMode = kCAFillModeForwards;
 
     [self.circle addAnimation:animationGroup forKey:INSInfiniteIndicatorSpinAnimationKey];
+    
+    self.circle.transform = CATransform3DMakeScale(0, 0, 0);
+    self.circle.opacity = 1.0;
 
     self.animating = YES;
 }
 
 - (void)stopAnimating {
     [self.circle removeAnimationForKey:INSInfiniteIndicatorSpinAnimationKey];
-
+    self.circle.transform = CATransform3DMakeScale(0, 0, 0);
+    self.circle.opacity = 1.0;
+    
     self.animating = NO;
 }
 
