@@ -240,15 +240,17 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
             }];
         }
         
-        [firstReponderViewController swizzleMethod:@selector(viewWillTransitionToSize:withTransitionCoordinator:) withReplacement:MZMethodReplacementProviderBlock {
-            return MZMethodReplacement(void, UIViewController *, CGSize size, id<UIViewControllerTransitionCoordinator> coordinator) {
-                
-                [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-                    animationBlock(self);
-                } completion:nil];
-                MZOriginalImplementation(void,size,coordinator);
-            };
-        }];
+        if ([firstReponderViewController respondsToSelector:@selector(viewWillTransitionToSize:withTransitionCoordinator:)]) {
+            [firstReponderViewController swizzleMethod:@selector(viewWillTransitionToSize:withTransitionCoordinator:) withReplacement:MZMethodReplacementProviderBlock {
+                return MZMethodReplacement(void, UIViewController *, CGSize size, id<UIViewControllerTransitionCoordinator> coordinator) {
+                    
+                    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+                        animationBlock(self);
+                    } completion:nil];
+                    MZOriginalImplementation(void,size,coordinator);
+                };
+            }];
+        }
     } 
 }
 
