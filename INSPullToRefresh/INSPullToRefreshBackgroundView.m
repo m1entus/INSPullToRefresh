@@ -244,10 +244,15 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
 - (void)handleContentInsetDuringFrameChange {
     if (self.shouldResetContentInsetDuringRotation) {
         UIViewController *viewController = [self ins_firstResponderViewController];
-        self.externalContentInset = UIEdgeInsetsMake(viewController.navigationController.navigationBar.frame.origin.y + viewController.navigationController.navigationBar.bounds.size.height, 0, 0, 0);
+        
+        CGFloat navigationBarHeight = viewController.navigationController.navigationBar.frame.origin.y + viewController.navigationController.navigationBar.bounds.size.height;
+        if (viewController.navigationController.navigationBar.translucent && self.scrollView.frame.origin.y <= navigationBarHeight) {
+            self.externalContentInset = UIEdgeInsetsMake(navigationBarHeight - self.scrollView.frame.origin.y, 0, 0, 0);
+        }
+        
         [self resetFrame];
         self.scrollView.scrollIndicatorInsets = self.externalContentInset;
-        [self resetScrollViewContentInsetWithCompletion:nil];
+        [self setScrollViewContentInset:self.externalContentInset];
     }
 }
 
