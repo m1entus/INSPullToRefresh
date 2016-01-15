@@ -136,10 +136,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (!self.enabled) {
-        return;
-    }
-    if ([keyPath isEqualToString:@"contentOffset"]) {
+    if (self.enabled && [keyPath isEqualToString:@"contentOffset"]) {
         [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
     }
     else if ([keyPath isEqualToString:@"contentSize"]) {
