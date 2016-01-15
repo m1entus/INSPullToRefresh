@@ -98,16 +98,21 @@ static NSString* const INSPullToRefreshSpinAnimationKey = @"SpinAnimation";
     animationGroup.duration = 1.0;
     animationGroup.repeatCount = INFINITY;
     animationGroup.animations = @[ scaleAnimation, opacityAnimation ];
+    animationGroup.removedOnCompletion = NO;
+    animationGroup.fillMode = kCAFillModeForwards;
 
     [self.circle addAnimation:animationGroup forKey:INSPullToRefreshSpinAnimationKey];
-
+    self.circle.transform = CATransform3DMakeScale(0, 0, 0);
+    self.circle.opacity = 1.0;
+    
     self.animating = YES;
 }
 
 - (void)stopAnimating {
     [self.circle removeAnimationForKey:INSPullToRefreshSpinAnimationKey];
     self.circle.transform = CATransform3DMakeScale(0, 0, 0);
-
+    self.circle.opacity = 1.0;
+    
     self.animating = NO;
 }
 
