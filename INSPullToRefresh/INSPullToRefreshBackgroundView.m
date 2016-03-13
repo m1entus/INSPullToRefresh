@@ -380,9 +380,7 @@ CGFloat const INSPullToRefreshDefaultDragToTriggerOffset = 80;
     BOOL alreadyUpdating = _updatingScrollViewContentInset; // Check to prevent errors from recursive calls.
     if (!alreadyUpdating) {
         self.updatingScrollViewContentInset = YES;
-    }
-    self.scrollView.contentInset = contentInset;
-    if (!alreadyUpdating) {
+        self.scrollView.contentInset = contentInset;
         self.updatingScrollViewContentInset = NO;
     }
 }
