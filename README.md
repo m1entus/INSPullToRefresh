@@ -25,6 +25,9 @@ We wrote couple samples that can be found in popular apps like Facebook, Vine, T
 `automaticallyAdjustsScrollViewInsets` property on UIViewController which is by default to YES is breaking a lot of stuff, so it will be automatically turned off when adding pull to refresh and managed by library manually.
 
 # Usage
+
+Objective-C
+
 ```objective-c
 [self.tableView ins_addPullToRefreshWithHeight:60.0 handler:^(UIScrollView *scrollView) {
     int64_t delayInSeconds = 1;
@@ -41,6 +44,25 @@ UIView <INSPullToRefreshBackgroundViewDelegate> *pullToRefresh = [[INSDefaultPul
 
 self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh;
 [self.tableView.ins_pullToRefreshBackgroundView addSubview:pullToRefresh];
+```
+
+Swift
+
+```swift
+self.tableView.ins_addPullToRefreshWithHeight(60.0, handler: { scrollView in
+    let delayInSeconds: Int64 = 1
+    let popTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * Int64(NSEC_PER_SEC));
+    
+    dispatch_after(popTime, dispatch_get_main_queue()) {
+        scrollView.ins_endPullToRefresh()
+    }
+    
+    let defaultFrame = CGRectMake(0, 0, 24, 24)
+    let pullToRefresh = INSDefaultPullToRefresh(frame: defaultFrame, backImage: UIImage(named: "default_child"), frontImage: UIImage(named: "default_user"))
+    
+    self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh
+    self.tableView.ins_pullToRefreshBackgroundView.addSubview(pullToRefresh)
+})
 ```
 
 All you need to do is handle two INSPullToRefreshBackgroundViewDelegate methods in your custom view.
