@@ -15,8 +15,12 @@
     while ([responder isKindOfClass:[UIView class]]) {
         responder = [responder nextResponder];
     }
-    
-    return (UIViewController *)responder;
+
+    if ([responder isKindOfClass:[UIViewController class]]) {
+        return (UIViewController *)responder;
+    }
+
+    return nil;
 }
 
 @end
