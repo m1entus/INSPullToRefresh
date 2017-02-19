@@ -251,8 +251,15 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
         }
     }];
 
-    // This will delay handler execution until scroll deceleration
-    [self performSelector:@selector(callInfiniteScrollActionHandler) withObject:self afterDelay:0.1 inModes:@[ NSDefaultRunLoopMode ]];
+    
+    // Whether should the handler execution be delayed until scroll deceleration or not
+    
+    if( _callInfiniteScrollActionImmediatly ) {
+        [self callInfiniteScrollActionHandler];
+    }
+    else {
+        [self performSelector:@selector(callInfiniteScrollActionHandler) withObject:self afterDelay:0.1 inModes:@[ NSDefaultRunLoopMode ]];
+    }
 }
 
 - (void)stopInfiniteScrollWithStoppingContentOffset:(BOOL)stopContentOffset {
