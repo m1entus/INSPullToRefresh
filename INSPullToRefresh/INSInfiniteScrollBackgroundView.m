@@ -98,7 +98,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
         self.hidden = !self.shouldShowWhenDisabled;
         if (@available(iOS 11.0, *)) {
             _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            _scrollView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
+            _scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
             _scrollView.scrollIndicatorInsets = _scrollView.contentInset;
         }
         [self resetFrame];
