@@ -258,7 +258,7 @@ static CGFloat const INSInfinityScrollContentInsetAnimationTime = 0.3;
     
     // Whether should the handler execution be delayed until scroll deceleration or not
     
-    if( _callInfiniteScrollActionImmediatly ) {
+    if( _callInfiniteScrollActionImmediately ) {
         [self callInfiniteScrollActionHandler];
     }
     else {

@@ -53,7 +53,7 @@ typedef NS_ENUM(NSUInteger, INSInfiniteScrollBackgroundViewState) {
 
 @property (nonatomic, assign) CGFloat additionalBottomOffsetForInfinityScrollTrigger;
 
-@property (nonatomic, assign) BOOL callInfiniteScrollActionImmediatly;
+@property (nonatomic, assign) BOOL callInfiniteScrollActionImmediately;
 
 - (instancetype)initWithHeight:(CGFloat)height scrollView:(UIScrollView *)scrollView;
 
