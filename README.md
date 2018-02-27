@@ -56,13 +56,13 @@ self.tableView.ins_addPullToRefreshWithHeight(60.0, handler: { scrollView in
     dispatch_after(popTime, dispatch_get_main_queue()) {
         scrollView.ins_endPullToRefresh()
     }
-    
-    let defaultFrame = CGRectMake(0, 0, 24, 24)
-    let pullToRefresh = INSDefaultPullToRefresh(frame: defaultFrame, backImage: UIImage(named: "default_child"), frontImage: UIImage(named: "default_user"))
-    
-    self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh
-    self.tableView.ins_pullToRefreshBackgroundView.addSubview(pullToRefresh)
 })
+
+let defaultFrame = CGRectMake(0, 0, 24, 24)
+let pullToRefresh = INSDefaultPullToRefresh(frame: defaultFrame, backImage: UIImage(named: "default_child"), frontImage: UIImage(named: "default_user"))
+    
+self.tableView.ins_pullToRefreshBackgroundView.delegate = pullToRefresh
+self.tableView.ins_pullToRefreshBackgroundView.addSubview(pullToRefresh)
 ```
 
 All you need to do is handle two INSPullToRefreshBackgroundViewDelegate methods in your custom view.
