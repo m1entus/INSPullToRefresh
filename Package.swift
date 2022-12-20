@@ -14,20 +14,9 @@ let package = Package(
     targets: [
         .target(
             name: "INSPullToRefresh",
-            dependencies: ["INSPullToRefreshSampleControls", "INSAnimatable"],
             path: "INSPullToRefresh",
-            publicHeadersPath: "INSPullToRefresh"
+            publicHeadersPath: "include"
         ),
-        .target(
-            name: "INSPullToRefreshSampleControls",
-            path: "INSPullToRefreshSampleControls/Default",
-            publicHeadersPath: "INSPullToRefreshSampleControls/Default"
-        ),
-        .target(
-            name: "INSAnimatable",
-            path: "INSPullToRefreshSampleControls/Animatable",
-            publicHeadersPath: "INSPullToRefreshSampleControls/Animatable"
-        )
     ],
     swiftLanguageVersions: [.v5]
 )

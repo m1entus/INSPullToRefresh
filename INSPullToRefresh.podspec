@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.homepage = 'http://inspace.io'
   s.authors  = 'inspace.io'
   s.source   = { :git => 'https://github.com/inspace-io/INSPullToRefresh.git', :tag => '1.2.0' }
-  s.source_files = ['INSPullToRefresh/*.{h,m}','INSPullToRefreshSampleControls/Default/*.{h,m}','INSPullToRefreshSampleControls/Animatable/INSAnimatable.h']
+  s.source_files = ['INSPullToRefresh/include/*.h','INSPullToRefresh/*.m']
   s.requires_arc = true
 
 end
